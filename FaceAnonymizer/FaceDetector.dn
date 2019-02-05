@@ -1,0 +1,5 @@
+component provides FaceAnonymizer.FaceDetector requires io.Output out {
+  FaceMetadata[] FaceDetector:detectFaces(Image image, ImageMetadata imageMetadata) {
+    return null
+  }
+}

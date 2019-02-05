@@ -1,0 +1,6 @@
+uses data.ImageMetadata
+uses ui.Image
+
+interface FaceAnonymizer {
+  Image anonymizeFaces(Image image, ImageMetadata imageMetadata)
+}

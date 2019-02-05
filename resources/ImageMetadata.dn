@@ -1,0 +1,11 @@
+uses time.DateTime
+uses media.WH
+
+data ImageMetadata {
+  DateTime timestamp
+  WH resolution
+  int numberOfFaces
+  int numberOfCars
+  dec faceDetectionWeight
+  dec carDetectionWeight
+}

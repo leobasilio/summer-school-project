@@ -1,0 +1,7 @@
+uses media.WH
+
+data FaceMetadata {
+  dec x
+  dec y
+  WH dimensions
+}

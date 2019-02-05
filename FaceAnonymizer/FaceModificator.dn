@@ -1,0 +1,5 @@
+component provides FaceAnonymizer.FaceModificator requires io.Output out {
+  Image FaceModificator:modifyFaces(Image image, FaceMetadata facesMetadata[]) {
+    return null
+  }
+}

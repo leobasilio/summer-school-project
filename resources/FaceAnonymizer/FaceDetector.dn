@@ -1,0 +1,7 @@
+uses data.ImageMetadata
+uses data.FaceMetadata
+uses ui.Image
+
+interface FaceDetector {
+  FaceMetadata[] detectFaces(Image image, ImageMetadata imageMetadata)
+}

@@ -1,0 +1,7 @@
+uses data.FaceMetadata
+uses media.WH
+uses ui.Image
+
+interface FaceModificator {
+  Image modifyFaces(Image image, FaceMetadata facesMetadata[])
+}
