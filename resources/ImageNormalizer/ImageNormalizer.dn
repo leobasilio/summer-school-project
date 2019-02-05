@@ -1,0 +1,6 @@
+uses data.ImageMetadata
+uses ui.Image
+
+interface ImageNormalizer{
+  ImageMetadata normalizer(Image image)
+}

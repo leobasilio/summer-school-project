@@ -1,0 +1,5 @@
+uses http.util.HTTPUtil
+
+interface HTTPPOST {
+	void handleRequest(HTTPMessage httpHeader)
+}
