@@ -1,0 +1,7 @@
+component provides http.handler.GET.HTTPGET requires io.Output out, data.IntUtil iu, io.File,
+	http.handler.DCH.DCHandler dch {
+
+    
+
+
+  }
