@@ -1,0 +1,9 @@
+component provides request.RequestHandler requires io.Output out, data.IntUtil iu, app_protocols.AppProtocol appProtocol {
+	void RequestHandler:handleRequest(TCPSocket s) {
+		asynch::processStream(s)
+	}
+
+	void processStream(TCPSocket s) {
+		appProtocol.processRequest(s)
+	}
+}

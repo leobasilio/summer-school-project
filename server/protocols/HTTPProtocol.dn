@@ -1,0 +1,8 @@
+component provides app_protocols.AppProtocol requires http.HTTPHeader httpHeader {
+
+	implementation AppProtocol {
+		void AppProtocol:processRequest(TCPSocket s) {
+			httpHeader.processRequest(s)
+		}
+	}
+}

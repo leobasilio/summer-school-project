@@ -1,0 +1,21 @@
+component provides App {
+
+  int App:main(AppParam params[]) requires net.TCPSocket, net.TCPServerSocket, request.RequestHandler rh {
+
+    TCPServerSocket host = new TCPServerSocket()
+
+    if (!host.bind(TCPServerSocket.ANY_ADDRESS, 8080)) {
+			out.println("Error: failed to bind master socket")
+			return 1
+		}
+
+		while (true) {
+			TCPSocket client = new TCPSocket()
+			if (client.accept(host)) { rh.handleRequest(client) }
+		}
+
+    return 0
+
+  }
+
+}
