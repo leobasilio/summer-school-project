@@ -1,0 +1,7 @@
+component provides http.handler.POST.HTTPPOST requires io.Output out, data.IntUtil iu, io.File{
+
+  void HTTPOST:handleRequest(HTTPMessage header) {
+    
+  }
+
+}
