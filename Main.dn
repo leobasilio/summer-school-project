@@ -1,0 +1,9 @@
+component provides App {
+
+  int App:main(AppParam params[]) {
+
+    return 0
+
+  }
+
+}
