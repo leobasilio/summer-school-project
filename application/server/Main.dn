@@ -1,6 +1,6 @@
-component provides App {
+component provides App requires io.Output out, data.IntUtil iu, net.TCPSocket, net.TCPServerSocket, request.RequestHandler rh {
 
-  int App:main(AppParam params[]) requires net.TCPSocket, net.TCPServerSocket, request.RequestHandler rh {
+  int App:main(AppParam params[]) {
 
     TCPServerSocket host = new TCPServerSocket()
 

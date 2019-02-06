@@ -1,7 +1,29 @@
-component provides ImageNormalizer.ImageNormalizer requires io.Output out {
-  ImageMetadata ImageNormalizer:normalizer(Image image){
-      ImageMetadata imageNormalized = null
-      return imageNormalized
+uses media.WH
+
+component provides ImageNormalizer.ImageNormalizer requires io.Output out, Orchestrator orch, time.Timer it, time.Calendar calendar {
+  void ImageNormalizer:processImage(Image image, ImageMetadata imageMetadata){
+      Image imageNormalized = normalizer(image)
+      ImageMetadata imageNormMetada = imageMetadata
+
+      out.print("Generating new metadata...")
+
+      imageNormMetada.format = "jpeg"
+      imageNormMetada.resolution = new WH()
+      imageNormMetada.resolution.width = 480
+      imageNormMetada.resolution.height = 640
+      imageNormMetada.timestamp = calendar.getTime()
+
+      orch.processImage(imageNormalized, imageNormMetada)
+  }
+
+  Image normalizer(Image image){
+
+    out.print("Normalizing image... \n")
+    it.sleep(20)
+
+    Image imageNormalized = new Image()
+
+    return imageNormalized
   }
 
 }

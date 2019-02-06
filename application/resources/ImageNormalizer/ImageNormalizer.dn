@@ -2,5 +2,5 @@ uses data.ImageMetadata
 uses ui.Image
 
 interface ImageNormalizer{
-  ImageMetadata normalizer(Image image)
+  void processImage(Image image, ImageMetadata imageMetadata)
 }
