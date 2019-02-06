@@ -17,7 +17,7 @@ component provides Orchestrator requires face_anonymizer.FaceAnonymizer anonymiz
 
     int numberOfCars = flowMeasurer.measureFlow(anonymizerResult.anonymizedImage, framesArray, metadataArray)
 
-    dataCollector.storeData(anonymizerResult.numberOfFaces, numberOfCars)
+    dataCollector.storeData(imageMetadata.numberOfFaces, imageMetadata.numberOfCars)
 
   }
 

@@ -20,19 +20,20 @@ df['Pedestrians'] = (df['Flow']/10).round().astype(int)
 df2 = df[['Time', 'Device Address', 'Flow', 'Speed', 'Pedestrians']].groupby(['Time', 'Device Address']).sum().unstack().fillna(0)
 
 df3 = pd.DataFrame({
-    'Flow': df2['Flow'][312],
+    'Vehicles': df2['Flow'][312],
     'Pedestrians': df2['Pedestrians'][312]
 }) #.resample('1S').interpolate('nearest')
 
-#df3.plot()
+#df3.plot(color=['orange', 'steelblue'])
 #pp.show()
+#exit(0)
 
 while True:
 
     for i, row in df3.iterrows():
 
         data = {
-            'numberOfCars': int(row['Flow']),
+            'numberOfCars': int(row['Vehicles']),
             'numberOfFaces': int(row['Pedestrians']),
             'faceDetectionWeight': random.random(),
             'carDetectionWeight': random.random()
@@ -42,4 +43,4 @@ while True:
 
         print(data)
 
-        time.sleep(0.5)
+        time.sleep(0.2)

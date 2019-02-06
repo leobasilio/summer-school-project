@@ -1,5 +1,5 @@
 
-component provides DataCollectorManager requires io.Output out, data.adt.HashTable {
+component provides DataCollectorManager requires io.Output out, data.adt.HashTable, data.IntUtil iu, net.UDPClient udp {
 
     HashTable ImageData_hashtable = new HashTable()
     int global_id = 0
@@ -14,6 +14,10 @@ component provides DataCollectorManager requires io.Output out, data.adt.HashTab
       ImageData_hashtable.put(key, imageDataToBeStored)
 		  global_id++
 
+      //==========================
+      udp.send("127.0.0.1", 8081, "$(iu.intToString(numberOfFaces)),$(iu.intToString(numberOfCars))")
+      //==========================
+
 		  return key
 
     }
@@ -26,4 +30,5 @@ component provides DataCollectorManager requires io.Output out, data.adt.HashTab
 
       return lastImageDataStored
     }
+
 }
