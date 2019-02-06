@@ -1,0 +1,29 @@
+
+component provides DataCollectorManager requires io.Output out, data.adt.HashTable {
+
+    HashTable ImageData_hashtable = new HashTable()
+    int global_id = 0
+
+    int DataCollectorManager:storeData(int numberOfFaces, int numberOfCars) {
+      int key = global_id
+
+      ImageMetaData imageDataToBeStored = new ImageMetaData()
+      imageDataToBeStored.numberOfCars = vehicleQuantity
+      imageDataToBeStored.numberOfFaces = peopleQuantity
+
+      ImageData_hashtable.put(key, imageDataToBeStored)
+		  global_id++
+
+		  return key
+
+    }
+
+    ImageMetaData DataCollectorManager:getLastImageDataStored(int resource_id) {
+
+      HashTableItem hashTableItems[] = ImageData_hashtable  .getContents()
+
+      ImageMetaData lastImageDataStored = hashTableItems[i].value
+
+      return lastImageDataStored
+    }
+}

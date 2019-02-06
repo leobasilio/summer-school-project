@@ -1,13 +1,7 @@
 component provides ImageNormalizer.ImageNormalizer requires io.Output out {
-
   ImageMetadata ImageNormalizer:normalizer(Image image){
-
       ImageMetadata imageNormalized = null
-
-      
-
       return imageNormalized
-
   }
 
 }

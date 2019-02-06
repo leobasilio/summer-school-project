@@ -1,0 +1,18 @@
+uses time.DateTime
+uses media.WH
+
+data ImageMetaData {
+  DateTime timestamp
+  char format[]
+  WH resolution
+  int numberOfFaces
+  int numberOfCars
+  dec faceDetectionWeight
+  dec carDetectionWeight
+}
+
+interface DataCollectorManager {
+	void storeData(int numberOfFaces, int numberOfCars)
+	ImageData getLastImageDataStored(int resource_id)
+	//ImageData[] getAllImageDataStored(int resource_id)
+}
