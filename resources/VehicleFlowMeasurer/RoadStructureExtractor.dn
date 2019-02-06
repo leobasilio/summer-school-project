@@ -1,0 +1,7 @@
+//uses data.ImageMetadata
+//uses media.WH
+uses ui.Image
+
+interface RoadStructureExtractor {
+  Image extractRoadStructure(Image image)
+}

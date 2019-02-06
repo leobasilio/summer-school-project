@@ -1,0 +1,7 @@
+uses data.ImageMetadata
+//uses media.WH
+uses ui.Image
+
+interface VehicleDetector {
+  Image detectVehicles(Image roadStructure, Image image, ImageMetadata imageMetadata)
+}
