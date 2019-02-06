@@ -13,7 +13,7 @@ component provides VehicleFlowMeasurer.VehicleFlowMeasurer requires RoadStructur
 		Image detectedVehicleImagesForSpeed[] = null
 		int index = frames.arrayLength - 1
 		for (int i = 4; i >= 0; i--) {
-			detectedVehicleImagesForSpeed[i] = vd.detectVehicles(roadStructure, frames[index])
+			detectedVehicleImagesForSpeed[i] = vd.detectVehicles(roadStructure, frames[index], framesMetadata[index])
 			index--
 		}
 		
@@ -21,7 +21,7 @@ component provides VehicleFlowMeasurer.VehicleFlowMeasurer requires RoadStructur
 		
 		Image detectedVehicleImagesForCounting[] = null
 		for (int i = 0; i < frames.arrayLength; i++) {
-			detectedVehicleImagesForCounting[i] = vd.detectVehicles(roadStructure, frames[i])
+			detectedVehicleImagesForCounting[i] = vd.detectVehicles(roadStructure, frames[i], framesMetadata[i])
 		}
 	
 		int vehiclesAmount = vc.countVehicles(detectedVehicleImagesForCounting, framesMetadata, speedData)

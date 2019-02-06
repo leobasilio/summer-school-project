@@ -1,4 +1,4 @@
-component provides VehicleCounter.VehicleCounter requires io.Output out {
+component provides VehicleCounter.VehicleCounter requires io.Output out, time.Timer timer {
   int VehicleCounter:countVehicles(Image detectedVehicleImages[], ImageMetadata detectedVehicleImagesMetadata[], SpeedData speedData) {
     return 0
   }
