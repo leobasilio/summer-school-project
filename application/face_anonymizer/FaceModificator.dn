@@ -1,4 +1,4 @@
-component provides FaceAnonymizer.FaceModificator requires time.Timer timer, io.Output out, data.IntUtil iu {
+component provides face_anonymizer.FaceModificator requires time.Timer timer, io.Output out, data.IntUtil iu {
 
   dec faceModificationProcTimeByPixel = 0.001
 

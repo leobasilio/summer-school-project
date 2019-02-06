@@ -1,4 +1,4 @@
-component provides FaceAnonymizer.FaceDetector requires util.RandomInt random, time.Timer timer, io.Output out, data.IntUtil iu {
+component provides face_anonymizer.FaceDetector requires util.RandomInt random, time.Timer timer, io.Output out, data.IntUtil iu {
 
   int minimumFaceWidth = 10
   int minimumFaceHeight = 20

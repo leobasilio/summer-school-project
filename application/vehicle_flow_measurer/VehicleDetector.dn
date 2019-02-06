@@ -1,12 +1,12 @@
-component provides VehicleFlowMeasurer.VehicleDetector requires io.Output out, data.IntUtil iu, time.Timer timer {
+component provides vehicle_flow_measurer.VehicleDetector requires io.Output out, data.IntUtil iu, time.Timer timer {
   Image VehicleDetector:detectVehicles(Image roadStructure, Image image, ImageMetadata imageMetadata) {
 	dec processingTime = 10
 	processingTime += 2*imageMetadata.numberOfCars*imageMetadata.carDetectionWeight
-	
+
   	timer.sleep(processingTime)
 
 	out.println("Detecting vehicles from an image with $(iu.intToString(imageMetadata.numberOfCars)): $(iu.intToString(processingTime)) milisseconds")
-    
+
     return image
   }
 }

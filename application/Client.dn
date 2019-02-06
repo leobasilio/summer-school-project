@@ -1,6 +1,6 @@
 component provides App requires net.http.HTTPRequest request {
   int App:main(AppParam params[]) {
-    request.post("http://localhost:8080/traffic_img_proc/action.dn", null, "json={\"data\": \"ola\"}")
+    //request.post("http://localhost:8080/traffic_img_proc/action.dn", null, "json={\"data\": \"ola\"}")
     return 0
   }
 }

@@ -1,4 +1,4 @@
-component provides FaceAnonymizer.FaceAnonymizer requires FaceAnonymizer.FaceDetector, FaceAnonymizer.FaceModificator, io.Output out {
+component provides face_anonymizer.FaceAnonymizer requires face_anonymizer.FaceDetector, face_anonymizer.FaceModificator, io.Output out {
   FaceDetector fd = new FaceDetector()
   FaceModificator fm = new FaceModificator()
 
