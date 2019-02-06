@@ -1,25 +1,42 @@
 uses data.String
 
-data ResourceMetada {
-  ImageMetadata data_
+data RawImage {
+  int numberOfFaces
+  int numberOfCars
+  dec faceDetectionWeight
+  dec carDetectionWeight
 }
 
 component provides ws.traffic_img_proc.TrafficImageProc requires io.Output out, data.IntUtil iu,
-	data.StringUtil strUtil, time.Timer t, time.Calendar ic, time.DateUtil dateUtil, image_normalizer.ImageNormalizer normalizer, data.json.JSONEncoder encoder, ui.Image{
+	data.StringUtil strUtil, time.Timer t, time.Calendar ic, time.DateUtil dateUtil, image_normalizer.ImageNormalizer normalizer, data.json.JSONEncoder encoder, ui.Image {
 
     bool started = false
 
     void TrafficImageProc:action(HashTable hashedHTTPData, Stream doc) {
+
   		String myJson = hashedHTTPData.get("json")
-      ImageMetadata imageMetadata = null
+      ImageMetadata imageMetadata = new ImageMetadata()
+
   		if (myJson != null) {
+
   			out.println("AEEEEE $(myJson.string)")
-        Map map[] = new Map[](new Map("data", "data_"))
-        imageMetadata = encoder.jsonToData(myJson.string, typeof(ImageMetadata), map)
+        RawImage rawImage = encoder.jsonToData(myJson.string, typeof(RawImage), null)
+
+        imageMetadata.numberOfFaces = rawImage.numberOfFaces
+        imageMetadata.numberOfCars = rawImage.numberOfCars
+        imageMetadata.faceDetectionWeight = rawImage.faceDetectionWeight
+        imageMetadata.carDetectionWeight = rawImage.carDetectionWeight
+
   		}
 
+      PixelMap pixelMap = new PixelMap()
 
-      normalizer.processImage(new Image(null), imageMetadata)
+      pixelMap.size = new media.WH()
+      pixelMap.size.width = 1
+      pixelMap.size.height = 1
+      pixelMap.pixels = new byte[4]
+
+      normalizer.processImage(new Image(pixelMap), imageMetadata)
 
   	}
 

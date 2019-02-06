@@ -4,6 +4,7 @@ import matplotlib.pyplot as pp
 import requests
 import time
 import random
+import json
 
 df = pd.read_csv('dataset.csv', usecols=[
     'Time', 'Device Address',
@@ -31,14 +32,14 @@ while True:
     for i, row in df3.iterrows():
 
         data = {
-            'numberOfCars': row['Flow'],
-            'numberOfFaces': row['Pedestrians'],
+            'numberOfCars': int(row['Flow']),
+            'numberOfFaces': int(row['Pedestrians']),
             'faceDetectionWeight': random.random(),
             'carDetectionWeight': random.random()
         }
 
-        #requests.post('http://localhost:8080/traffic_img_proc/action.dn', null, json=data)
+        requests.post('http://localhost:8080/traffic_img_proc/action.dn', data={'json': json.dumps(data)})
 
         print(data)
 
-        time.sleep(0.1)
+        time.sleep(0.5)

@@ -2,9 +2,16 @@ component provides face_anonymizer.FaceAnonymizer requires face_anonymizer.FaceD
   FaceDetector fd = new FaceDetector()
   FaceModificator fm = new FaceModificator()
 
-  Image FaceAnonymizer:anonymizeFaces(Image image, ImageMetadata imageMetadata) {
+  FaceAnonymizerResult FaceAnonymizer:anonymizeFaces(Image image, ImageMetadata imageMetadata) {
+
     FaceMetadata facesMetadata[] = fd.detectFaces(image, imageMetadata)
     Image modifiedImage = fm.modifyFaces(image, facesMetadata)
-    return modifiedImage
+
+    FaceAnonymizerResult result = new FaceAnonymizerResult()
+
+    result.anonymizedImage = modifiedImage
+    result.numberOfFaces = imageMetadata.numberOfFaces
+
+    return result
   }
 }

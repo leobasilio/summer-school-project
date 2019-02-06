@@ -1,19 +1,23 @@
-component provides Orchestrator requires face_anonymizer.FaceAnonymizer anonymizer, vehicle_flow_measurer.VehicleFlowMeasurer flowMeasurer, vehicle_flow_measurer.VehicleSpeedMeasurer speedMeasurer, ui.Image {
+component provides Orchestrator requires face_anonymizer.FaceAnonymizer anonymizer, vehicle_flow_measurer.VehicleFlowMeasurer flowMeasurer, vehicle_flow_measurer.VehicleSpeedMeasurer speedMeasurer, ui.Image, data_collector.DataCollectorManager dataCollector {
 
   void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata){
 
-    Image anonymizedImage = anonymizer.anonymizeFaces(inputImage, imageMetadata)
+    FaceAnonymizerResult anonymizerResult = anonymizer.anonymizeFaces(inputImage, imageMetadata)
 
-    Image framesArray[]
-    ImageMetadata metadataArray[]
+    Image framesArray[] = new Image[5]
+    ImageMetadata metadataArray[] = new ImageMetadata[5]
 
-    framesArray[0] = anonymizedImage
-    metadataArray[0] = imageMetadata
+    for(int i = 0 ; i < framesArray.arrayLength ; i++){
+      framesArray[i] = anonymizerResult.anonymizedImage
+    }
 
-    int flowNumber = flowMeasurer.measureFlow(anonymizedImage, framesArray, metadataArray)
-    //int speedNumber = speedMeasurer.measureSpeed(anonymizedImage, framesArray, metadataArray)
+    for(int i = 0 ; i < metadataArray.arrayLength ; i++){
+      metadataArray[i] = imageMetadata
+    }
 
+    int numberOfCars = flowMeasurer.measureFlow(anonymizerResult.anonymizedImage, framesArray, metadataArray)
 
+    dataCollector.storeData(anonymizerResult.numberOfFaces, numberOfCars)
 
   }
 
