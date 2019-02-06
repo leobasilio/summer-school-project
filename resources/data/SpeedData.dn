@@ -1,0 +1,5 @@
+data SpeedData {
+  int startingRow
+  int verticalDistance
+  dec averageSpeed
+}
