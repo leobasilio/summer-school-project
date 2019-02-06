@@ -1,5 +1,35 @@
-component provides FaceAnonymizer.FaceDetector requires io.Output out {
+component provides FaceAnonymizer.FaceDetector requires util.RandomInt random, time.Timer timer, io.Output out, data.IntUtil iu {
+
+  int minimumFaceWidth = 10
+  int minimumFaceHeight = 20
+  int faceDetectionProcTime = 100
+
   FaceMetadata[] FaceDetector:detectFaces(Image image, ImageMetadata imageMetadata) {
-    return null
+    int numberOfFaces = imageMetadata.numberOfFaces
+    dec faceDetectionWeight = imageMetadata.faceDetectionWeight
+    WH resolution = imageMetadata.resolution
+    FaceMetadata facesMetadata[] = new FaceMetadata[numberOfFaces]
+    random.setSeed(1)
+
+    for (int i = 0; i < numberOfFaces; i++) {
+      FaceMetadata faceMetadata = new FaceMetadata()
+      faceMetadata.x = random.get(resolution.width - minimumFaceWidth)
+      faceMetadata.y = random.get(resolution.height - minimumFaceHeight)
+      faceMetadata.dimensions = new WH()
+      faceMetadata.dimensions.width = random.get(resolution.width - faceMetadata.x) + minimumFaceWidth
+      if (faceMetadata.x + faceMetadata.dimensions.width > resolution.width) {
+        faceMetadata.dimensions.width = resolution.width - faceMetadata.x
+      }
+      faceMetadata.dimensions.height = random.get(resolution.height - faceMetadata.y) + minimumFaceHeight
+      if (faceMetadata.y + faceMetadata.dimensions.height > resolution.height) {
+        faceMetadata.dimensions.height = resolution.height - faceMetadata.y
+      }
+      dec time = faceDetectionWeight * faceDetectionProcTime
+      out.println("[DEBUG] Face detector: sleep for $(iu.intToString(time))")
+      timer.sleep(time)
+      out.println("Face detector: Face found at [$(iu.intToString(faceMetadata.x))][$(iu.intToString(faceMetadata.y))] -> $(iu.intToString(faceMetadata.dimensions.width)),$(iu.intToString(faceMetadata.dimensions.height))")
+      facesMetadata[i] = faceMetadata
+    }
+    return facesMetadata
   }
 }

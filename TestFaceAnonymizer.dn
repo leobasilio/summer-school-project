@@ -1,0 +1,22 @@
+uses data.ImageMetadata
+
+component provides App requires io.Output out, io.Input in, data.IntUtil iu, FaceAnonymizer.FaceDetector, FaceAnonymizer.FaceModificator {
+
+  FaceDetector fd = new FaceDetector()
+  FaceModificator fm = new FaceModificator()
+
+  int App:main(AppParam params[]) {
+    ImageMetadata imageMetadata = new ImageMetadata()
+    imageMetadata.timestamp = null
+    imageMetadata.format = null
+    WH resolution = new WH()
+    resolution.width = 800
+    resolution.height = 600
+    imageMetadata.resolution = resolution
+    imageMetadata.numberOfFaces = 10
+    imageMetadata.faceDetectionWeight = 0.5
+    FaceMetadata facesMetadata[] = fd.detectFaces(null, imageMetadata)
+    fm.modifyFaces(null, facesMetadata)
+    return 0
+  }
+}

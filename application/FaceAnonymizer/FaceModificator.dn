@@ -1,5 +1,17 @@
-component provides FaceAnonymizer.FaceModificator requires io.Output out {
+component provides FaceAnonymizer.FaceModificator requires time.Timer timer, io.Output out, data.IntUtil iu {
+
+  dec faceModificationProcTimeByPixel = 0.001
+
   Image FaceModificator:modifyFaces(Image image, FaceMetadata facesMetadata[]) {
+    for (int i = 0; i < facesMetadata.arrayLength; i++) {
+      int width =  facesMetadata[i].dimensions.width
+      int height =  facesMetadata[i].dimensions.height
+      dec numberOfPixels = width * height
+      dec time = faceModificationProcTimeByPixel * numberOfPixels
+      out.println("[DEBUG] Face modificator: sleep for $(iu.intToString(time))")
+      timer.sleep(time)
+      out.println("Face modificator: modified  $(iu.intToString(numberOfPixels)) pixels")
+    }
     return null
   }
 }
