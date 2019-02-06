@@ -1,4 +1,4 @@
-component provides web_app.Dispatcher requires io.Output out, traffic_img_proc.TrafficImageProc trafficImgProc, danapedia.DanaPedia danaPedia, stream.Stream {
+component provides ws.web_app.Dispatcher requires io.Output out, ws.traffic_img_proc.TrafficImageProc trafficImgProc, ws.danapedia.DanaPedia danaPedia, ws.stream.Stream {
 
 	void Dispatcher:process(char resource[], char method[], HashTable hashedHTTPData, TCPSocket socket) {
 		Stream doc = new Stream(socket)

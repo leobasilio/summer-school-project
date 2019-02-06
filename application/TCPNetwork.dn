@@ -7,7 +7,7 @@
 
 const char debugMSG[] = "[@TCPNetwork]"
 
-component provides App requires io.Output out, data.IntUtil iu, net.TCPSocket, net.TCPServerSocket, request.RequestHandler rh {
+component provides App requires io.Output out, data.IntUtil iu, net.TCPSocket, net.TCPServerSocket, ws.request.RequestHandler rh {
 	int App:main(AppParam params[]) {
 		TCPServerSocket host = new TCPServerSocket()
 		int server_port = 8080

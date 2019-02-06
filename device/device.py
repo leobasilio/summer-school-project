@@ -37,7 +37,7 @@ while True:
             'carDetectionWeight': random.random()
         }
 
-        #requests.post('http://localhost:8080/traffic_img_proc/action.dn', json=data)
+        #requests.post('http://localhost:8080/traffic_img_proc/action.dn', null, json=data)
 
         print(data)
 

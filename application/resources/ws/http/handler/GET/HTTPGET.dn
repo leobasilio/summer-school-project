@@ -1,4 +1,4 @@
-uses http.util.HTTPUtil
+uses ws.http.util.HTTPUtil
 
 interface HTTPGET {
 	void handleRequest(HTTPMessage httpHeader)

@@ -7,9 +7,9 @@
 
 const char debugMSG[] = "[@HTTPGET]"
 
-component provides http.handler.GET.HTTPGET requires io.Output out, data.IntUtil iu, io.File, 
-	http.handler.DCH.DCHandler dch {
-	
+component provides ws.http.handler.GET.HTTPGET requires io.Output out, data.IntUtil iu, io.File,
+	ws.http.handler.DCH.DCHandler dch {
+
 	void HTTPGET:handleRequest(HTTPMessage header) {
 		if (header == null) { return }
 		if (header.command == "GET") {

@@ -1,7 +1,7 @@
-uses stream.Stream
+uses ws.stream.Stream
 uses data.adt.HashTable
 
 interface DanaPedia {
 	void pageNotFound(Stream doc)
-	void action(HashTable hashedHTTPData, Stream doc)	
+	void action(HashTable hashedHTTPData, Stream doc)
 }

@@ -4,7 +4,7 @@ data IntH {
 	int i
 }
 
-component provides stream.Stream requires data.IntUtil intUtil, io.Output out, data.StringUtil strUtil {
+component provides ws.stream.Stream requires data.IntUtil intUtil, io.Output out, data.StringUtil strUtil {
 
 	bool autoChunked
 	bool firstWrite

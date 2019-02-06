@@ -7,9 +7,9 @@
 
 const char debugMSG[] = "[@DCHandler]"
 
-component provides http.handler.DCH.DCHandler requires io.Output out, data.IntUtil iu, io.File,
-	io.FileSystem fileSystem, http.util.HTTPUtil httpUtil, data.adt.HashTable,
-	data.StringUtil strUtil, web_app.Dispatcher dispatcher, encoding.Encoder:uri encoder {
+component provides ws.http.handler.DCH.DCHandler requires io.Output out, data.IntUtil iu, io.File,
+	io.FileSystem fileSystem, ws.http.util.HTTPUtil httpUtil, data.adt.HashTable,
+	data.StringUtil strUtil, ws.web_app.Dispatcher dispatcher, encoding.Encoder:uri encoder {
 
 	// should the thread blocker be here -- or is it a too coarse grained thread controller?
 	Mutex threadBlocker = new Mutex()

@@ -9,7 +9,7 @@ uses data.String
 
 const char debugMSG[] = "[@DanaPedia]"
 
-component provides danapedia.DanaPedia requires io.Output out, data.IntUtil iu,
+component provides ws.danapedia.DanaPedia requires io.Output out, data.IntUtil iu,
 	data.StringUtil strUtil, time.Timer t, time.Calendar ic, time.DateUtil dateUtil {
 
 	bool started = false
