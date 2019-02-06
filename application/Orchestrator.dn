@@ -1,0 +1,20 @@
+component provides Orchestrator requires FaceAnonymizer.FaceAnonymizer anonymizer, VehicleFlowMeasurer.VehicleFlowMeasurer flowMeasurer, VehicleFlowMeasurer.VehicleSpeedMeasurer speedMeasurer, ui.Image {
+
+  void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata){
+
+    Image anonymizedImage = anonymizer.anonymizeFaces(inputImage, imageMetadata)
+
+    Image framesArray[1]
+    ImageMetadata metadataArray[1]
+
+    framesArray[0] = anonymizedImage
+    metadataArray[0] = imageMetadata
+
+    int flowNumber = flowMeasurer.measureFlow(anonymizedImage, framesArray, metadataArray)
+    //int speedNumber = speedMeasurer.measureSpeed(anonymizedImage, framesArray, metadataArray)
+
+
+
+  }
+
+}
