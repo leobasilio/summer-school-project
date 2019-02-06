@@ -1,0 +1,6 @@
+uses ImageMetadata
+uses ui.Image
+
+interface Orchestrator {
+  void processImage(Image image, ImageMetadata imageMetadata)
+}

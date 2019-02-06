@@ -1,0 +1,14 @@
+uses ImageMetadata
+uses ui.Image
+
+component provides Orchestrator requires FaceAnonymizer anonymizer {
+
+  void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata){
+
+    Image anonymizedImage = anonymizer.anonymizeFaces(inputImage, imageMetadata)
+
+    
+
+  }
+
+}
