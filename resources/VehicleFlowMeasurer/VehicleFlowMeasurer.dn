@@ -1,0 +1,6 @@
+uses data.ImageMetadata
+uses ui.Image
+
+interface VehicleFlowMeasurer {
+  int measureFlow(Image roadStructure, Image frames[], ImageMetadata framesMetadata[])
+}
