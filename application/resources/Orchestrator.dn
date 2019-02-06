@@ -1,4 +1,4 @@
-uses ImageMetadata
+uses data.ImageMetadata
 uses ui.Image
 
 interface Orchestrator {

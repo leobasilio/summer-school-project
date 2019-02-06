@@ -1,7 +1,16 @@
-uses ImageMetadata
 uses ui.Image
 
-component provides Orchestrator requires FaceAnonymizer anonymizer, VehicleFlowMeasurer flowMeasurer, VehicleSpeedMeasurer speedMeasurer {
+data ImageMetadata {
+  DateTime timestamp
+  char format[]
+  WH resolution
+  int numberOfFaces
+  int numberOfCars
+  dec faceDetectionWeight
+  dec carDetectionWeight
+}
+
+component provides Orchestrator requires FaceAnonymizer.FaceAnonymizer anonymizer, VehicleFlowMeasurer.VehicleFlowMeasurer flowMeasurer, VehicleFlowMeasurer.VehicleSpeedMeasurer speedMeasurer {
 
   void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata){
 

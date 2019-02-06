@@ -1,0 +1,26 @@
+uses data.String
+
+data ResourceMetada {
+  ImageMetadata data_
+}
+
+component provides traffic_img_proc.TrafficImageProc requires io.Output out, data.IntUtil iu,
+	data.StringUtil strUtil, time.Timer t, time.Calendar ic, time.DateUtil dateUtil, ImageNormalizer.ImageNormalizer normalizer, data.json.JSONEncoder encoder{
+
+    bool started = false
+
+    void TrafficImageProc:action(HashTable hashedHTTPData, Stream doc) {
+  		String myJson = hashedHTTPData.get("json")
+      ImageMetadata imageMetadata = null
+  		if (myJson != null) {
+  			out.println("AEEEEE $(myJson.string)")
+        Map map[] = new Map[](new Map("data", "data_"))
+        ImageMetadata imageMetadata = encoder.jsonToData(myJson, typeof(ImageMetadata), map)
+  		}
+
+
+      normalizer.processImage(new Image(), imageMetadata)
+
+  	}
+
+  }

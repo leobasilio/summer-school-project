@@ -1,6 +1,7 @@
 uses media.WH
+uses media.PixelMap
 
-component provides ImageNormalizer.ImageNormalizer requires io.Output out, Orchestrator orch, time.Timer it, time.Calendar calendar {
+component provides ImageNormalizer.ImageNormalizer requires io.Output out, Orchestrator orch, time.Timer it, time.Calendar calendar, ui.Image {
   void ImageNormalizer:processImage(Image image, ImageMetadata imageMetadata){
       Image imageNormalized = normalizer(image)
       ImageMetadata imageNormMetada = imageMetadata
@@ -21,7 +22,7 @@ component provides ImageNormalizer.ImageNormalizer requires io.Output out, Orche
     out.print("Normalizing image... \n")
     it.sleep(20)
 
-    Image imageNormalized = new Image()
+    Image imageNormalized = new Image(new PixelMap())
 
     return imageNormalized
   }

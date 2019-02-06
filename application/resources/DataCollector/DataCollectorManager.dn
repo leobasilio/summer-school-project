@@ -12,7 +12,7 @@ data ImageMetaData {
 }
 
 interface DataCollectorManager {
-	void storeData(int numberOfFaces, int numberOfCars)
-	ImageData getLastImageDataStored(int resource_id)
+	int storeData(int numberOfFaces, int numberOfCars)
+	ImageMetaData getLastImageDataStored(int resource_id)
 	//ImageData[] getAllImageDataStored(int resource_id)
 }

@@ -1,0 +1,6 @@
+uses stream.Stream
+uses data.adt.HashTable
+
+interface TrafficImageProc {
+  void action(HashTable hashedHTTPData, Stream doc)	
+}

@@ -1,5 +1,0 @@
-uses net.TCPSocket
-
-interface AppProtocol {
-	void processRequest(TCPSocket request)
-}

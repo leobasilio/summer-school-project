@@ -1,5 +1,0 @@
-uses net.TCPSocket
-
-interface HTTPHeader {
-	void processRequest(TCPSocket s)
-}

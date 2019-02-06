@@ -1,5 +1,0 @@
-uses http.util.HTTPUtil
-
-interface HTTPInterpreter {
-	void processRequest(HTTPMessage header)
-}
