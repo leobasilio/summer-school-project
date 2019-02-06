@@ -1,0 +1,52 @@
+uses time.DateTime
+uses ImageMetadata
+uses ui.Image
+
+const char debugMSG[] = "[@OrchestratorProxy]"
+
+component provides Orchestrator, monitoring.BeingMonitored requires io.Output out,
+	Orchestrator, monitoring.Container, time.Calendar calendar, time.DateUtil dateUtil {
+
+	static Container monitor
+
+	implementation BeingMonitored {
+		Event[] BeingMonitored:getEvents() {
+			if (monitor == null) { monitor = new Container() }
+			return monitor.getEvents()
+		}
+
+		Metric[] BeingMonitored:getMetrics() {
+			if (monitor == null) { monitor = new Container() }
+			return monitor.getMetrics()
+		}
+
+		void BeingMonitored:turnMonitorOn() {
+			if (monitor == null) { monitor = new Container() }
+			monitor.turnMonitorOn()
+		}
+
+		void BeingMonitored:turnMonitorOff() {
+			if (monitor == null) { monitor = new Container() }
+			monitor.turnMonitorOff()
+		}
+	}
+
+	implementation Orchestrator {
+		void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata) {
+			if (monitor == null) {
+				monitor = new Container()
+				monitor.turnMonitorOn()
+			}
+
+			DateTime startTime = calendar.getTime()
+
+			Orchestrator orchestrator = new Orchestrator()
+			orchestrator.processImage(inputImage, imageMetadata)
+
+			DateTime delta = dateUtil.diff(calendar.getTime(), startTime)
+
+			monitor.addMetric("response_time", delta.millisecond + delta.second*1000, false)
+			monitor.addEvent("number_of_request", 1)
+		}
+	}
+}

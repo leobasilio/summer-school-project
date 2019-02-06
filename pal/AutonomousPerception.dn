@@ -1,0 +1,71 @@
+uses data.String
+
+const char IP[] = "localhost"
+const int PORT 	= 2011
+
+component provides App requires io.Output out, rest.RESys, time.Timer t, data.IntUtil iu, learning.UCB ucb, data.json.JSONParser parser, data.DecUtil du {
+	int App:main(AppParam param[]) {
+		RESys sys = new RESys(IP, PORT)
+		out.println("Setting main...")
+		sys.setMain("../application/Main.o")
+		out.println("Adding proxy...")
+		sys.addProxy("|../pal/monitoring/proxies/OrchestratorProxy.o|*(*:Orchestrator[0]:*)|")
+		out.println("Starting collection cycle...")
+
+		String configs[] = sys.getAllConfigs()
+		String actions[]
+
+		for (int i = 0; i < configs.arrayLength; i++)
+			actions = new String[](actions, new String("a" + i))
+
+		ucb.setActions(actions)
+
+		int currentAction
+
+		//for (int count = 0; count < configs.arrayLength; count++) {
+		while(true){
+
+			int a = ucb.getAction()
+
+			if(a != currentAction){
+
+				out.println("")
+				out.println("Changing configuration to $(iu.intToString(a))")
+				out.println("")
+
+				sys.setConfig(configs[a].string)
+
+				currentAction = a
+
+			}
+
+			t.sleep(100)
+
+			//out.println("Perception data ($(iu.intToString(count))): $(sys.getPerceptionData())")
+
+			JSONElement perceptionData = parser.parseDocument(sys.getPerceptionData())
+
+			char metricName[] = parser.getValueByDot("metrics[0].name", perceptionData).value
+
+			if(metricName == "response_time"){
+
+				int totalResponseTime = iu.intFromString(parser.getValueByDot("metrics[0].value", perceptionData).value)
+				int totalCount = iu.intFromString(parser.getValueByDot("metrics[0].count", perceptionData).value)
+
+				dec averageResponseTime = (0.0 + totalResponseTime) / totalCount
+				dec reward = (5.0 - averageResponseTime)/5
+
+				out.println("[Reward] $(du.decToString(reward)) (avg time: $(du.decToString(averageResponseTime))ms)")
+
+				ucb.consumeData(reward)
+
+			}
+
+		}
+
+		out.println("Terminating...")
+		sys.terminate()
+		out.println("Goodbye!")
+		return 0
+	}
+}
