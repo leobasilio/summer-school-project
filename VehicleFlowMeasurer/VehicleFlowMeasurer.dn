@@ -11,14 +11,16 @@ component provides VehicleFlowMeasurer.VehicleFlowMeasurer requires RoadStructur
 
 		Image roadStructure = rs.extractRoadStructure(backgroundImage)
 		Image detectedVehicleImagesForSpeed[] = null
-		for (int i = 0; i < 5; i++) {
-			detectedVehicleImagesForSpeed[i] = vd.detectVehicles(roadStructure, frames[i])
+		int index = frames.arrayLength - 1
+		for (int i = 4; i >= 0; i--) {
+			detectedVehicleImagesForSpeed[i] = vd.detectVehicles(roadStructure, frames[index])
+			index--
 		}
 		
 		SpeedData speedData = vsm.measureSpeed(roadStructure, detectedVehicleImagesForSpeed, framesMetadata)
 		
 		Image detectedVehicleImagesForCounting[] = null
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < frames.arrayLength; i++) {
 			detectedVehicleImagesForCounting[i] = vd.detectVehicles(roadStructure, frames[i])
 		}
 	
