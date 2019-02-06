@@ -1,0 +1,5 @@
+component provides RoadStructureExtractor.RoadStructureExtractor requires io.Output out {
+  Image RoadStructureExtractor:extractRoadStructure(Image image) {
+    return null
+  }
+}

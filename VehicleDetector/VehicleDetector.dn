@@ -1,0 +1,5 @@
+component provides VehicleDetector.VehicleDetector requires io.Output out {
+  Image VehicleDetector:detectVehicles(Image roadStructure, Image image) {
+    return null
+  }
+}

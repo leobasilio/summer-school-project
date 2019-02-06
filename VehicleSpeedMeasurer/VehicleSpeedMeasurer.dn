@@ -1,0 +1,5 @@
+component provides VehicleSpeedMeasurer.VehicleSpeedMeasurer requires io.Output out {
+  SpeedData VehicleSpeedMeasurer:measureSpeed(Image roadStructure, Image frames[], ImageMetadata framesMetadata[]) {
+    return null
+  }
+}

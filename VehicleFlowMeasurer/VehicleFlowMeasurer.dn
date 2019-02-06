@@ -1,0 +1,29 @@
+//uses data.SpeedData
+
+component provides VehicleFlowMeasurer.VehicleFlowMeasurer requires RoadStructureExtractor.RoadStructureExtractor, VehicleDetector.VehicleDetector, VehicleSpeedMeasurer.VehicleSpeedMeasurer, VehicleCounter.VehicleCounter, io.Output out {
+	RoadStructureExtractor rs = new RoadStructureExtractor()
+	VehicleDetector vd = new VehicleDetector()
+	VehicleSpeedMeasurer vsm = new VehicleSpeedMeasurer()
+	VehicleCounter vc = new VehicleCounter()	
+	
+	
+	int VehicleFlowMeasurer:measureFlow(Image backgroundImage, Image frames[], ImageMetadata framesMetadata[]) {
+
+		Image roadStructure = rs.extractRoadStructure(backgroundImage)
+		Image detectedVehicleImagesForSpeed[] = null
+		for (int i = 0; i < 5; i++) {
+			detectedVehicleImagesForSpeed[i] = vd.detectVehicles(roadStructure, frames[i])
+		}
+		
+		SpeedData speedData = vsm.measureSpeed(roadStructure, detectedVehicleImagesForSpeed, framesMetadata)
+		
+		Image detectedVehicleImagesForCounting[] = null
+		for (int i = 0; i < 10; i++) {
+			detectedVehicleImagesForCounting[i] = vd.detectVehicles(roadStructure, frames[i])
+		}
+	
+		int vehiclesAmount = vc.countVehicles(detectedVehicleImagesForCounting, framesMetadata, speedData)
+		return vehiclesAmount
+  }
+}
+
