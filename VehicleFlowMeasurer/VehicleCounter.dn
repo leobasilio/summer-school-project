@@ -1,0 +1,13 @@
+component provides VehicleFlowMeasurer.VehicleCounter requires io.Output out, data.IntUtil iu, time.Timer timer {
+  int VehicleCounter:countVehicles(Image detectedVehicleImages[], ImageMetadata detectedVehicleImagesMetadata[], SpeedData speedData) {
+  	int carAmount = 0
+	dec processingTime = 50
+	processingTime += 20*detectedVehicleImages.arrayLength
+	
+  	timer.sleep(processingTime)
+
+	out.println("Counting total amount of cars from $(iu.intToString(detectedVehicleImages.arrayLength)) frames: $(iu.intToString(processingTime)) milisseconds")
+	
+    return carAmount
+  }
+}

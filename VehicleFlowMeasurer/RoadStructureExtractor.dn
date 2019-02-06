@@ -1,0 +1,10 @@
+component provides VehicleFlowMeasurer.RoadStructureExtractor requires io.Output out, data.IntUtil iu, time.Timer timer {
+  Image RoadStructureExtractor:extractRoadStructure(Image image) {
+	dec processingTime = 10
+  	timer.sleep(processingTime)
+
+	out.println("Extracting road structure: $(iu.intToString(processingTime)) milisseconds")
+    
+    return image
+  }
+}

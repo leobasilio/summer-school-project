@@ -1,0 +1,17 @@
+component provides VehicleFlowMeasurer.VehicleSpeedMeasurer requires io.Output out, data.IntUtil iu, time.Timer timer {
+  SpeedData VehicleSpeedMeasurer:measureSpeed(Image roadStructure, Image frames[], ImageMetadata framesMetadata[]) {
+	dec processingTime = 10
+	processingTime += 10*frames.arrayLength
+	
+  	timer.sleep(processingTime)
+
+	out.println("Measuring vehicle average speed from $(iu.intToString(frames.arrayLength)) frames: $(iu.intToString(processingTime)) milisseconds")
+
+	SpeedData speedData = new SpeedData()
+	speedData.startingRow = 5
+	speedData.verticalDistance = 10
+	speedData.averageSpeed = 40.5
+	    
+    return speedData
+  }
+}
