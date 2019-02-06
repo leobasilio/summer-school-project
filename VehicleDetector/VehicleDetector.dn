@@ -1,7 +1,0 @@
-component provides VehicleDetector.VehicleDetector requires io.Output out, time.Timer timer {
-  Image VehicleDetector:detectVehicles(Image roadStructure, Image image, ImageMetadata imageMetadata) {
-  	timer.sleep(1000)
-    
-    return image
-  }
-}

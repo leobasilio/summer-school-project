@@ -1,7 +1,0 @@
-component provides RoadStructureExtractor.RoadStructureExtractor requires io.Output out, time.Timer timer {
-  Image RoadStructureExtractor:extractRoadStructure(Image image) {
-  	timer.sleep(1000)
-    
-    return image
-  }
-}

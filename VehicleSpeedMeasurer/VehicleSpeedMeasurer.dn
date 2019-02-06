@@ -1,5 +1,0 @@
-component provides VehicleSpeedMeasurer.VehicleSpeedMeasurer requires io.Output out, time.Timer timer {
-  SpeedData VehicleSpeedMeasurer:measureSpeed(Image roadStructure, Image frames[], ImageMetadata framesMetadata[]) {
-    return null
-  }
-}

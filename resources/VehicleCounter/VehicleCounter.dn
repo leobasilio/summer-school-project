@@ -1,8 +1,0 @@
-uses data.ImageMetadata
-uses data.SpeedData
-//uses media.WH
-uses ui.Image
-
-interface VehicleCounter {
-  int countVehicles(Image detectedVehicleImages[], ImageMetadata detectedVehicleImagesMetadata[], SpeedData speedData)
-}
