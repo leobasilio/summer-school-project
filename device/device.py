@@ -39,7 +39,7 @@ while True:
             'carDetectionWeight': random.random()
         }
 
-        requests.post('http://localhost:8080/traffic_img_proc/action.dn', data={'json': json.dumps(data)})
+        requests.post('http://172.20.0.2:8080/traffic_img_proc/action.dn', data={'json': json.dumps(data)})
 
         print(data)
 

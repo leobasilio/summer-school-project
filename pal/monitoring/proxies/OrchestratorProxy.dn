@@ -1,10 +1,10 @@
 uses time.DateTime
-uses ImageMetadata
+uses data.ImageMetadata
 uses ui.Image
 
 const char debugMSG[] = "[@OrchestratorProxy]"
 
-component provides Orchestrator, monitoring.BeingMonitored requires io.Output out,
+component provides orchestrator.Orchestrator, monitoring.BeingMonitored requires io.Output out,
 	Orchestrator, monitoring.Container, time.Calendar calendar, time.DateUtil dateUtil {
 
 	static Container monitor

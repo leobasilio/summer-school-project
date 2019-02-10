@@ -1,7 +1,7 @@
 uses media.WH
 uses media.PixelMap
 
-component provides image_normalizer.ImageNormalizer requires io.Output out, time.Timer it, time.Calendar calendar, ui.Image, Orchestrator orch {
+component provides image_normalizer.ImageNormalizer requires io.Output out, time.Timer it, time.Calendar calendar, ui.Image, orchestrator.Orchestrator orch {
   void ImageNormalizer:processImage(Image image, ImageMetadata imageMetadata){
       Image imageNormalized = normalizer(image)
       ImageMetadata imageNormMetada = clone imageMetadata

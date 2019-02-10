@@ -1,0 +1,36 @@
+component provides Orchestrator requires net.TCPSocket, data.json.JSONEncoder encoder, io.Output out {
+
+  void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata){
+
+    TCPSocket client = new TCPSocket()
+
+    client.connect("172.20.0.3", 8080)
+
+    char payload[] = encoder.jsonFromData(imageMetadata, null)
+    byte header[] = intToByteArray(payload.arrayLength)
+
+    client.send(header)
+    client.send(payload)
+
+    if(client.recv(2) != "OK"){
+      out.println("[Orchestrator] Error on remote invocation")
+    }
+
+    client.disconnect()
+
+  }
+
+  byte[] intToByteArray(int i){
+
+    byte b[4]
+
+    b[0] = i % 255
+    b[1] = (i >> 8) % 255
+    b[2] = (i >> 16) % 255
+    b[3] = (i >> 24) % 255
+
+    return b
+
+  }
+
+}

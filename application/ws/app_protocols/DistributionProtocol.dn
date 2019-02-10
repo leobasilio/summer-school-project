@@ -1,0 +1,57 @@
+uses data.ImageMetadata
+uses media.WH
+uses media.PixelMap
+
+component provides ws.app_protocols.AppProtocol requires orchestrator.Orchestrator orch, data.json.JSONEncoder encoder, ui.Image, data.IntUtil iu, io.Output out {
+
+  void AppProtocol:processRequest(TCPSocket s) {
+
+    byte header[] = s.recv(4)
+    int payloadSize = byteArrayToInt(header)
+    char payload[] = null
+
+    out.println("[DistributionProtocol] Payload Size = $(iu.intToString(payloadSize))")
+
+    while(payloadSize > 0){
+
+      if(payloadSize > 4096){
+        payload = new char[](payload, s.recv(4096))
+        payloadSize = payloadSize - 4096
+      }else{
+        payload = new char[](payload, s.recv(payloadSize))
+        payloadSize = 0
+      }
+
+    }
+
+    processPayload(payload)
+
+    s.send("OK")
+    s.disconnect()
+
+  }
+
+  void processPayload(char payload[]){
+
+    ImageMetadata imageMetadata = encoder.jsonToData(payload, typeof(ImageMetadata), null)
+
+    PixelMap pixelMap = new PixelMap()
+
+    pixelMap.size = new media.WH()
+    pixelMap.size.width = 1
+    pixelMap.size.height = 1
+    pixelMap.pixels = new byte[4]
+
+    Image imageNormalized = new Image(pixelMap)
+
+    orch.processImage(imageNormalized, imageMetadata)
+
+  }
+
+  int byteArrayToInt(byte b[]){
+
+    return b[0] + 255*b[1] + 255*255*b[2] + 255*255*555*b[3]
+
+  }
+
+}
