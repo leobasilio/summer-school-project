@@ -4,7 +4,7 @@ component provides Orchestrator requires net.TCPSocket, data.json.JSONEncoder en
 
     TCPSocket client = new TCPSocket()
 
-    client.connect("172.20.0.3", 8080)
+    client.connect("172.20.0.4", 8080)
 
     char payload[] = encoder.jsonFromData(imageMetadata, null)
     byte header[] = intToByteArray(payload.arrayLength)
