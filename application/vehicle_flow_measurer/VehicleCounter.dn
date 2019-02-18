@@ -6,7 +6,7 @@ component provides vehicle_flow_measurer.VehicleCounter requires io.Output out, 
 
   	timer.sleep(processingTime)
 
-	out.println("Counting total amount of cars from $(iu.intToString(detectedVehicleImages.arrayLength)) frames: $(iu.intToString(processingTime)) milisseconds")
+	//out.println("Counting total amount of cars from $(iu.intToString(detectedVehicleImages.arrayLength)) frames: $(iu.intToString(processingTime)) milisseconds")
 
     return carAmount
   }

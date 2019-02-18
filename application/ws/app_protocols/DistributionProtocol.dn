@@ -10,7 +10,7 @@ component provides ws.app_protocols.AppProtocol requires orchestrator.Orchestrat
     int payloadSize = byteArrayToInt(header)
     char payload[] = null
 
-    out.println("[DistributionProtocol] Payload Size = $(iu.intToString(payloadSize))")
+    //out.println("[DistributionProtocol] Payload Size = $(iu.intToString(payloadSize))")
 
     while(payloadSize > 0){
 

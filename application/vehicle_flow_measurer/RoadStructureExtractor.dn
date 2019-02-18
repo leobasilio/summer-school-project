@@ -3,7 +3,7 @@ component provides vehicle_flow_measurer.RoadStructureExtractor requires io.Outp
 	dec processingTime = 10
   	timer.sleep(processingTime)
 
-	out.println("Extracting road structure: $(iu.intToString(processingTime)) milisseconds")
+	//out.println("Extracting road structure: $(iu.intToString(processingTime)) milisseconds")
 
     return image
   }

@@ -65,8 +65,8 @@ component provides ws.http.handler.DCH.DCHandler requires io.Output out, data.In
 		String keyValue[]
 		for (int count = 0; count < helper.arrayLength; count++) {
 			keyValue = strUtil.explode(helper[count].string, "=")
-			out.println("$(keyValue[0].string)")
-			out.println("$(keyValue[1].string)")
+			//out.println("$(keyValue[0].string)")
+			//out.println("$(keyValue[1].string)")
 			hashedHTTPData.put(keyValue[0].string,
 				new String(encoder.decode(keyValue[1].string)))
 		}

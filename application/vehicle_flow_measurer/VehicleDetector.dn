@@ -5,7 +5,7 @@ component provides vehicle_flow_measurer.VehicleDetector requires io.Output out,
 
   	timer.sleep(processingTime)
 
-	out.println("Detecting vehicles from an image with $(iu.intToString(imageMetadata.numberOfCars)): $(iu.intToString(processingTime)) milisseconds")
+	//out.println("Detecting vehicles from an image with $(iu.intToString(imageMetadata.numberOfCars)): $(iu.intToString(processingTime)) milisseconds")
 
     return image
   }

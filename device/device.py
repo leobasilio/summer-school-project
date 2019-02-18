@@ -5,8 +5,11 @@ import requests
 import time
 import random
 import json
+import os
 
-df = pd.read_csv('dataset.csv', usecols=[
+os.path
+
+df = pd.read_csv(os.path.dirname(os.path.realpath(__file__)) + '/dataset.csv', usecols=[
     'Time', 'Device Address',
     'Flow(Category 1)', 'Flow(Category 2)', 'Flow(Category 3)',
     'Speed(Lane 1)', 'Speed(Lane 2)', 'Speed(Lane 3)'

@@ -8,9 +8,9 @@ component provides face_anonymizer.FaceModificator requires time.Timer timer, io
       int height =  facesMetadata[i].dimensions.height
       dec numberOfPixels = width * height
       dec time = faceModificationProcTimeByPixel * numberOfPixels
-      out.println("[DEBUG] Face modificator: sleep for $(iu.intToString(time))")
+      //out.println("[DEBUG] Face modificator: sleep for $(iu.intToString(time))")
       timer.sleep(time)
-      out.println("Face modificator: modified  $(iu.intToString(numberOfPixels)) pixels")
+      //out.println("Face modificator: modified  $(iu.intToString(numberOfPixels)) pixels")
     }
     return null
   }

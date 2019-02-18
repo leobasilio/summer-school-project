@@ -5,7 +5,7 @@ component provides vehicle_flow_measurer.VehicleSpeedMeasurer requires io.Output
 
   	timer.sleep(processingTime)
 
-	out.println("Measuring vehicle average speed from $(iu.intToString(frames.arrayLength)) frames: $(iu.intToString(processingTime)) milisseconds")
+	//out.println("Measuring vehicle average speed from $(iu.intToString(frames.arrayLength)) frames: $(iu.intToString(processingTime)) milisseconds")
 
 	SpeedData speedData = new SpeedData()
 	speedData.startingRow = 5

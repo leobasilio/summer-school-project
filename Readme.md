@@ -2,49 +2,38 @@
 
 Starting at the repository's root directory.
 
-1. Compile the application
-
-```
-$ cd application
-$ dnc .
-$ cd ..
-```
-
-2. Compile the PAL Framework
-
-```
-$ cd pal
-$ dnc . -sp ../application/
-$ cd ..
-```
-
-3. Create the virtual network
+1. Create the virtual network
 
 ```
 $ docker network create --subnet=172.20.0.0/24 demo
 ```
 
-4. Build the Dana image
+2. Build the project's image
 
 ```
-$ docker build --tag dana .
+$ docker build --tag summer-project .
 ```
 
-5. Run the EmergentSys component
+3. Run the EDGE container
 
 ```
-$ docker run --rm -it -v "$PWD:/app" -p 8080:8080 --network=demo --ip 172.20.0.2 -w /app/pal dana dana -sp ../application/ EmergentSys.o
+$ docker run --rm -it -p 8080:8080 --network=demo --ip 172.20.0.2 --cpus='0.2' -e LAYER=edge summer-project
 ```
 
-6. Run the Autonomous Perception
+4. Run the FOG container
 
 ```
-$ docker run --rm -it -v "$PWD:/app" --network=demo --ip 172.20.0.3 -w /app/pal dana dana -sp ../application/ AutonomousPerception.o
+$ docker run --rm -it --network=demo --ip 172.20.0.3 --cpus='0.4' -e LAYER=fog summer-project
 ```
 
-7. Run the remote application
+5. Run the CLOUD container
 
 ```
-# to be fixed
-$ docker run --rm -it -v "$PWD:/app" --network=demo --ip 172.20.0.4 -w /app/pal dana dana -sp ../application/ ../application/TCPNetwork.o
+$ docker run --rm -it --network=demo --ip 172.20.0.4 -e LAYER=cloud summer-project
+```
+
+6. Run the DEVICE simulator
+
+```
+$ python3 device/device.py
 ```

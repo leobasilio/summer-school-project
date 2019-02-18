@@ -6,7 +6,7 @@ component provides image_normalizer.ImageNormalizer requires io.Output out, time
       Image imageNormalized = normalizer(image)
       ImageMetadata imageNormMetada = clone imageMetadata
 
-      out.println("Generating new metadata...")
+      //out.println("Generating new metadata...")
 
       imageNormMetada.format = "jpeg"
       imageNormMetada.resolution = new WH()
@@ -19,7 +19,7 @@ component provides image_normalizer.ImageNormalizer requires io.Output out, time
 
   Image normalizer(Image image){
 
-    out.print("Normalizing image... \n")
+    //out.print("Normalizing image... \n")
     it.sleep(20)
 
     PixelMap pixelMap = new PixelMap()

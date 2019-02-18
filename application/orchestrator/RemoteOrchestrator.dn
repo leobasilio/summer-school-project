@@ -1,10 +1,14 @@
-component provides Orchestrator requires net.TCPSocket, data.json.JSONEncoder encoder, io.Output out {
+component provides Orchestrator requires net.TCPSocket, data.json.JSONEncoder encoder, io.Output out, os.SystemInfo sysInfo {
 
   void Orchestrator:processImage(Image inputImage, ImageMetadata imageMetadata){
 
     TCPSocket client = new TCPSocket()
 
-    client.connect("172.20.0.4", 8080)
+    if(sysInfo.getVariable("LAYER") == "fog"){
+      client.connect("172.20.0.4", 8080)
+    }else{ // edge
+      client.connect("172.20.0.3", 8080)
+    }
 
     char payload[] = encoder.jsonFromData(imageMetadata, null)
     byte header[] = intToByteArray(payload.arrayLength)

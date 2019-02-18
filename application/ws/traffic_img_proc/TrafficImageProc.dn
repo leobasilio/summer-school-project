@@ -19,7 +19,7 @@ component provides ws.traffic_img_proc.TrafficImageProc requires io.Output out, 
 
   		if (myJson != null) {
 
-  			out.println("AEEEEE $(myJson.string)")
+  			//out.println("AEEEEE $(myJson.string)")
         RawImage rawImage = encoder.jsonToData(myJson.string, typeof(RawImage), null)
 
         imageMetadata.numberOfFaces = rawImage.numberOfFaces
