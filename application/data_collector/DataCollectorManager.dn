@@ -15,7 +15,7 @@ component provides DataCollectorManager requires io.Output out, data.adt.HashTab
 		  global_id++
 
       //==========================
-      udp.send("127.0.0.1", 8081, "$(iu.intToString(numberOfFaces)),$(iu.intToString(numberOfCars))")
+      udp.send("172.20.0.1", 8081, "$(iu.intToString(numberOfFaces)),$(iu.intToString(numberOfCars))")
       //==========================
 
 		  return key

@@ -13,7 +13,7 @@ y2 = []
 sock = sk.socket(sk.AF_INET, sk.SOCK_DGRAM)
 
 sock.setblocking(False)
-sock.bind(('127.0.0.1', 8081))
+sock.bind(('172.20.0.1', 8081))
 
 def animate(i, x, y1, y2):
 
