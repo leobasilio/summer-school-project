@@ -1,6 +1,5 @@
 import pandas as pd
 import datetime as dt
-import matplotlib.pyplot as pp
 import requests
 import time
 import random
@@ -25,11 +24,7 @@ df2 = df[['Time', 'Device Address', 'Flow', 'Speed', 'Pedestrians']].groupby(['T
 df3 = pd.DataFrame({
     'Vehicles': df2['Flow'][312],
     'Pedestrians': df2['Pedestrians'][312]
-}) #.resample('1S').interpolate('nearest')
-
-#df3.plot(color=['orange', 'steelblue'])
-#pp.show()
-#exit(0)
+})
 
 while True:
 
